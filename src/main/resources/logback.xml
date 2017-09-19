@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+<jmxConfigurator />
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+	<filter class="ar.gob.gcaba.dgisis.sadetester.SadeTester$ConsoleFilter" />
+   <encoder>
+	    <pattern>%msg%n</pattern>
+    </encoder>
+  </appender>
+  
+    
+   <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  <!-- file property left unset/blank -->
+  <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+    <fileNamePattern>sade-tester.%d{yyyy-MM-dd}.log</fileNamePattern>
+  </rollingPolicy>
+  <encoder>
+    <pattern>%d{HH:mm:ss.SSS} [%.-1level] %msg | %logger{0}.%M[%L]%n</pattern>
+  </encoder>
+</appender>
+
+
+    <!-- This file appender is used to output aggregated performance statistics -->
+    <appender name="TIME" class="ch.qos.logback.core.FileAppender">
+      <file>perfStats.log</file>
+      <append>true</append>
+	  <encoder>
+	    <pattern>%d{HH:mm:ss.SSS} [%.-1level] %msg | %logger{0}.%M[%L]%n</pattern>
+	  </encoder>
+    </appender>
+
+    <!-- Loggers -->
+    <logger name="org.perf4j.TimingLogger" additivity="false">
+        <level value="TRACE"/>
+	    <appender-ref ref="TIME" />
+    </logger>  
+    
+    <logger name="ar.gob.gcaba" level="debug" />
+    <logger name="org.apache" level="warn"/>
+
+  <root>
+    <appender-ref ref="STDOUT"  />
+    <appender-ref ref="FILE" />
+  </root>
+</configuration>

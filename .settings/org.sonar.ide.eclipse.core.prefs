@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+extraProperties=sonar.jdbc.password\=sonar\r\nsonar.jdbc.username\=sonar\r\nsonar.jdbc.url\=jdbc\:postgresql\://localhost/sonar?useUnicode
+projectKey=ar.gob.gcaba.dgisis\:sade-tester
+serverUrl=http\://localhost\:9000
+version=2
